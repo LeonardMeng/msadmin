@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ms_admin
+    username: root
+    password: 123456
+  redis: # redis config
+    host: 127.0.0.1 # IP
+    port: 6379
+    database: 0 # ???
+    password:
+    connect-timeout: 10s  # timeout
+    lettuce: # lettuce redis?????
+      pool: # redis pool
+        max-active: 8  #
+        max-wait: 200s  # ??????????????????????? ?? -1
+        max-idle: 8 # ??????????? ?? 8
+        min-idle: 0 # ??????????? ?? 0
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+    expire:
+      authCode: 120 # 验证码超期时间
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer  #JWT负载中拿到开头
+
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /swagger-ui/
+      - /swagger-resources/**
+      - /**/v2/api-docs
+      - /v3/api-docs/**
+      - /**/*.html
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /favicon.ico
+      - /actuator/**
+      - /druid/**
+      - /admin/**
+      - /sso/**
