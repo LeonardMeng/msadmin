@@ -11,8 +11,11 @@ public enum ResponseCode {
     USER_NOT_EXSITED(20001, "User is not exsited!"),
     USER_NAME_OR_PASSWORD_ERROR(20002, "User name or password is not correct!"),
     EMAIL_HAS_EXSITED(20003, "Email is already exsited!"),
-    PARAM_IS_INVALID(20002, "Param is invalid."),
+    PARAM_IS_INVALID(30002, "Param is invalid."),
     TOKEN_IS_REQUIRED(40001, "Token is required."),
+    TOKEN_IS_EXPIRED(40002, "Token is expired."),
+    TOKEN_CHECK_FAILED(40002, "Token check failed."),
+
     SYSTEM_ERROR(10000, "System Error, Please Contact Admin.");
 
 
