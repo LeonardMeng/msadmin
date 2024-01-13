@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/BarChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/GeographyChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/LineChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PieChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProgressCircle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/StatBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/mockData.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/mockGeoFeatures.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/contacts/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/invoices/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/userManagement/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/geography/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Topbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +88,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705108905636</updated>
-      <workItem from="1705108907959" duration="6097000" />
+      <workItem from="1705108907959" duration="11275000" />
     </task>
     <servers />
   </component>

@@ -8,6 +8,7 @@ import Sidebar from "./views/components/Sidebar";
 import UserManagement from "./views/userManagement";
 import Contacts from "./views/contacts";
 import Invoices from "./views/invoices";
+import Geography from "./views/geography";
 function App() {
   const [theme, colorMode] = useMode();
   return (
@@ -23,6 +24,7 @@ function App() {
                       <Route path="/userManagement" element={<UserManagement />} />
                       <Route path="/contacts" element={<Contacts />} />
                       <Route path="/invoices" element={<Invoices />} />
+                      <Route path="/geography" element={<Geography />} />
                   </Routes>
               </main>
           </div>
