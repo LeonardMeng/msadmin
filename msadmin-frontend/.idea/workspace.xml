@@ -5,9 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/views/geography/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/Leetcode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/constant/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/constant/JwtConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/JwtLogoutSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/LoginFailureHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/LoginSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/MyUserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/utils/DateUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/utils/StringUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/assets/IMG_9538.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/layout/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/enums/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/enums/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Topbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,17 +62,19 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/menglingjun/WorkSpace/msadmin/msadmin-frontend/src/views",
+    "last_opened_file_path": "/Users/menglingjun/WorkSpace/msadmin/msadmin-frontend/public/assets",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/src/views" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/components" />
@@ -88,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1705108905636</updated>
-      <workItem from="1705108907959" duration="11275000" />
+      <workItem from="1705108907959" duration="17117000" />
     </task>
     <servers />
   </component>

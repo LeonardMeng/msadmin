@@ -96,7 +96,7 @@ const Sidebar = () => {
                                     alt="profile-user"
                                     width="100px"
                                     height="100px"
-                                    src={`../../assets/user.png`}
+                                    src={`../../assets/IMG_9538.JPG`}
                                     style={{ cursor: "pointer", borderRadius: "50%" }}
                                 />
                             </Box>
@@ -119,7 +119,7 @@ const Sidebar = () => {
                     <Box paddingLeft={isCollapsed ? undefined : "10%"}>
                         <Item
                             title="Dashboard"
-                            to="/"
+                            to="/dashboard"
                             icon={<HomeOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
