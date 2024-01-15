@@ -1,4 +1,4 @@
-package org.mengsoft.msadmin.common.config;
+package org.mengsoft.msadmin.common.security;
 
 
 import org.mengsoft.msadmin.common.security.*;
