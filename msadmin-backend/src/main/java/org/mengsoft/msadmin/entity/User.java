@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 
  * @TableName user
  */
 @TableName(value ="user")
+@Data
 public class User implements Serializable {
     /**
      * 用户ID
@@ -82,160 +86,31 @@ public class User implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户ID
-     */
-    public Long getId() {
-        return id;
-    }
+
 
     /**
-     * 用户ID
+     * 所属角色 多个角色 逗号隔开
      */
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @TableField(exist = false)
+    private String roles;
 
     /**
-     * 用户名
+     * 旧密码
      */
-    public String getUsername() {
-        return username;
-    }
+    @TableField(exist = false)
+    private String oldPassword;
 
     /**
-     * 用户名
+     * 确认新密码
      */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @TableField(exist = false)
+    private String newPassword;
 
     /**
-     * 密码
+     * 所有角色集合
      */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
-     * 密码
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * 用户头像
-     */
-    public String getAvatar() {
-        return avatar;
-    }
-
-    /**
-     * 用户头像
-     */
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    /**
-     * 用户邮箱
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * 用户邮箱
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * 手机号码
-     */
-    public String getPhonenumber() {
-        return phonenumber;
-    }
-
-    /**
-     * 手机号码
-     */
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
-    /**
-     * 最后登录时间
-     */
-    public Date getLoginDate() {
-        return loginDate;
-    }
-
-    /**
-     * 最后登录时间
-     */
-    public void setLoginDate(Date loginDate) {
-        this.loginDate = loginDate;
-    }
-
-    /**
-     * 帐号状态(0正常 1停用)
-     */
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * 帐号状态(0正常 1停用)
-     */
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    /**
-     * 创建时间
-     */
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    /**
-     * 创建时间
-     */
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    /**
-     * 更新时间
-     */
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    /**
-     * 更新时间
-     */
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    /**
-     * 备注
-     */
-    public String getRemark() {
-        return remark;
-    }
-
-    /**
-     * 备注
-     */
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
+    @TableField(exist = false)
+    public List<Role> roleList;
     @Override
     public boolean equals(Object that) {
         if (this == that) {

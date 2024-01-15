@@ -17,7 +17,8 @@ public class CorsConfig implements WebMvcConfigurer {
     }
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/image/userAvatar/**").addResourceLocations("file:D:\\java1234-admin3\\userAvatar\\");
+        registry.addResourceHandler("/image/userAvatar/**")
+                .addResourceLocations("file:D:\\java1234-admin3\\userAvatar\\");
     }
 
 

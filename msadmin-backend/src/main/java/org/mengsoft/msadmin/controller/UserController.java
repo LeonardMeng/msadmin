@@ -2,19 +2,22 @@ package org.mengsoft.msadmin.controller;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.mengsoft.msadmin.common.responseutils.BusinessException;
+import org.mengsoft.msadmin.common.responseutils.enums.ResponseCode;
 import org.mengsoft.msadmin.common.utils.JwtUtils;
+import org.mengsoft.msadmin.common.utils.StringUtil;
 import org.mengsoft.msadmin.dto.UserLoginParam;
 import org.mengsoft.msadmin.entity.User;
 import org.mengsoft.msadmin.service.UserService;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.annotation.Resources;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @EnableAutoConfiguration
@@ -26,13 +29,22 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value="/list", method= RequestMethod.GET, produces="application/json")
-    public List<User> list() {
-        return userService.list();
+// @PreAuthorize("hasAnyAuthority('system2:user:list')")
+    @PreAuthorize("hasRole('ROLE_common')")
+    public Map<String,Object> userList(@RequestHeader(required = false) String token){
+        if(StringUtil.isNotEmpty(token)){
+            Map<String,Object> resutMap=new HashMap<>();
+            List<User> userList = userService.list();
+            resutMap.put("userList",userList);
+            return resutMap;
+        }
+
+        throw new BusinessException(ResponseCode.USER_NOT_LOGIN);
     }
 
     @RequestMapping(value="/login", method= RequestMethod.POST, produces="application/json")
     public String login(@RequestBody UserLoginParam userLoginParam) {
-        return JwtUtils.genJwtToken("admin");
+        return JwtUtils.genJwtToken("java1234");
     }
 
 }

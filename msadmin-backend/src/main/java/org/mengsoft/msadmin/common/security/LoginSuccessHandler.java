@@ -2,14 +2,14 @@ package org.mengsoft.msadmin.common.security;
 
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.java1234.entity.R;
-import com.java1234.entity.SysMenu;
-import com.java1234.entity.SysRole;
-import com.java1234.entity.SysUser;
-import com.java1234.service.SysMenuService;
-import com.java1234.service.SysRoleService;
-import com.java1234.service.SysUserService;
-import com.java1234.util.JwtUtils;
+import org.mengsoft.msadmin.common.responseutils.BusinessException;
+import org.mengsoft.msadmin.common.responseutils.enums.ResponseCode;
+import org.mengsoft.msadmin.common.utils.JwtUtils;
+import org.mengsoft.msadmin.entity.Menu;
+import org.mengsoft.msadmin.entity.Role;
+import org.mengsoft.msadmin.entity.User;
+import org.mengsoft.msadmin.service.MenuService;
+import org.mengsoft.msadmin.service.RoleService;
 import org.mengsoft.msadmin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -25,10 +25,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * 登录成功处理器
- * @author java1234_小锋 （公众号：java1234）
- * @site www.java1234.vip
- * @company 南通小锋网络科技有限公司
+ *
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -37,10 +36,10 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     private UserService userService;
 
     @Autowired
-    private SysRoleService sysRoleService;
+    private RoleService roleService;
 
     @Autowired
-    private SysMenuService sysMenuService;
+    private MenuService menuService;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
@@ -50,31 +49,38 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         String username=authentication.getName();
         String token = JwtUtils.genJwtToken(username);
 
-        SysUser currentUser = userService.getByUsername(username);
-
+        User currentUser = userService.getByUsername(username);
+        if(currentUser == null)
+            throw new BusinessException(ResponseCode.USER_NAME_OR_PASSWORD_ERROR);
         // 根据用户id获取所有的角色信息
-        List<SysRole> roleList = sysRoleService.list(new QueryWrapper<SysRole>().inSql("id", "SELECT role_id FROM sys_user_role WHERE user_id=" + currentUser.getId()));
+        List<Role> roleList = roleService.list(new QueryWrapper<Role>().inSql("id", "SELECT role_id FROM sys_user_role WHERE user_id=" + currentUser.getId()));
 
         // 遍历所有的角色，获取所有菜单权限 而且不重复
-        Set<SysMenu> menuSet=new HashSet<>();
-        for(SysRole sysRole:roleList){
-            List<SysMenu> sysMenuList = sysMenuService.list(new QueryWrapper<SysMenu>().inSql("id", "SELECT menu_id FROM sys_role_menu WHERE role_id=" + sysRole.getId()));
-            for(SysMenu sysMenu:sysMenuList){
-                menuSet.add(sysMenu);
+        Set<Menu> menuSet=new HashSet<>();
+        for(Role sysRole:roleList){
+            List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().inSql("id", "SELECT menu_id FROM sys_role_menu WHERE role_id=" + sysRole.getId()));
+            for(Menu menu:menuList){
+                menuSet.add(menu);
             }
         }
 
-        currentUser.setRoles(roleList.stream().map(SysRole::getName).collect(Collectors.joining(",")));
+        currentUser.setRoles(roleList.stream().map(Role::getName).collect(Collectors.joining(",")));
 
-        List<SysMenu> sysMenuList=new ArrayList<>(menuSet);
+        List<Menu> sysMenuList=new ArrayList<>(menuSet);
 
         // 排序
-        sysMenuList.sort(Comparator.comparing(SysMenu::getOrderNum));
+        sysMenuList.sort(Comparator.comparing(Menu::getOrderNum));
 
         // 转菜单树
-        List<SysMenu> menuList=sysMenuService.buildTreeMenu(sysMenuList);
+        List<Menu> menuList=menuService.buildTreeMenu(sysMenuList);
 
-        outputStream.write(JSONUtil.toJsonStr(R.ok("登录成功").put("authorization",token).put("currentUser",currentUser).put("menuList",menuList)).getBytes());
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("authorization", token);
+        resultMap.put("currentUser", currentUser);
+        resultMap.put("menuList", menuList);
+
+//        outputStream.write(JSONUtil.toJsonStr(R.ok("登录成功").put("authorization",token).put("currentUser",currentUser).put("menuList",menuList)).
+        outputStream.write(JSONUtil.toJsonStr(resultMap).getBytes());
         outputStream.flush();
         outputStream.close();
     }

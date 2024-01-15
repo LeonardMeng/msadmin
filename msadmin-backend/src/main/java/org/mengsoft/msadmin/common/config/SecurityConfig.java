@@ -14,10 +14,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * spring security配置
- * @author java1234_小锋 （公众号：java1234）
- * @site www.java1234.vip
- * @company 南通小锋网络科技有限公司
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 @Configuration
 @EnableWebSecurity

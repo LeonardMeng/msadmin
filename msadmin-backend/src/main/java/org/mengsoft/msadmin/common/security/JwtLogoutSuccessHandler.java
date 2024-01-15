@@ -1,7 +1,7 @@
 package org.mengsoft.msadmin.common.security;
 
 import cn.hutool.json.JSONUtil;
-import com.java1234.entity.R;
+import org.mengsoft.msadmin.common.responseutils.Response;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -13,10 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 自定义logout处理
- * @author java1234_小锋 （公众号：java1234）
- * @site www.java1234.vip
- * @company 南通小锋网络科技有限公司
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 @Component
 public class JwtLogoutSuccessHandler implements LogoutSuccessHandler {
@@ -25,7 +23,7 @@ public class JwtLogoutSuccessHandler implements LogoutSuccessHandler {
         httpServletResponse.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = httpServletResponse.getOutputStream();
 
-        outputStream.write(JSONUtil.toJsonStr(R.ok("登出成功")).getBytes());
+        outputStream.write(JSONUtil.toJsonStr(Response.success()).getBytes());
         outputStream.flush();
         outputStream.close();
     }

@@ -3,11 +3,8 @@ package org.mengsoft.msadmin.entity;
 import io.jsonwebtoken.Claims;
 
 /**
- * jwt验证信息
- * @author java1234_小锋
- * @site www.java1234.com
- * @company Java知识分享网
- * @create 2019-08-13 上午 10:00
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 public class CheckResult {
 

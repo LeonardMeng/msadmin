@@ -24,9 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * @author java1234_小锋 （公众号：java1234）
- * @site www.java1234.vip
- * @company 南通小锋网络科技有限公司
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
@@ -60,9 +59,9 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         CheckResult checkResult = JwtUtils.validateJWT(token);
         if(!checkResult.isSuccess()){
             switch (checkResult.getErrCode()){
-                case JwtConstant.JWT_ERRCODE_NULL:throw new JwtException("Token不存在");
-                case JwtConstant.JWT_ERRCODE_FAIL:throw new JwtException("Token验证不通过");
-                case JwtConstant.JWT_ERRCODE_EXPIRE:throw new JwtException("Token过期");
+                case JwtConstant.JWT_ERRCODE_NULL:throw new JwtException("Token Doesn't Exist");
+                case JwtConstant.JWT_ERRCODE_FAIL:throw new JwtException("Cannot Verify Token");
+                case JwtConstant.JWT_ERRCODE_EXPIRE:throw new JwtException("Token Expired");
             }
         }
         Claims claims = JwtUtils.parseJWT(token);

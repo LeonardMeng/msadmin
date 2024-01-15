@@ -14,10 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * jwt认证失败处理
- * @author java1234_小锋 （公众号：java1234）
- * @site www.java1234.vip
- * @company 南通小锋网络科技有限公司
+ * @author Leonard Meng
+ * @site www.menglingjun.com
  */
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
