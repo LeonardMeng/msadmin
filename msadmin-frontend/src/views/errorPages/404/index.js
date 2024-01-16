@@ -26,8 +26,8 @@ export default function Error404() {
             <Typography variant="h6" style={{ color: 'white' }}>
                 The page you’re looking for doesn’t exist.
             </Typography>
-            <Button variant="contained">
-                <Link href="/dashboard">
+            <Button variant="contained" >
+                <Link href="/dashboard" style={{ color: 'white' }}>
                     Back to Home
                 </Link>
             </Button>
