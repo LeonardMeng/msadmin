@@ -1,0 +1,11 @@
+/**
+ * Created by KanadeM on 17/1/2024
+ */
+
+// actionTypes.js
+export const SET_USER_DETAILS = 'SET_USER_DETAILS';
+export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const DELETE_USER_DETAILS = 'DELETE_USER_DETAILS';
+export const SET_USER_SETTINGS = 'SET_USER_SETTINGS';
+export const GET_USER_SETTINGS = 'GET_USER_SETTINGS';
+export const DELETE_USER_SETTINGS = 'DELETE_USER_SETTINGS';

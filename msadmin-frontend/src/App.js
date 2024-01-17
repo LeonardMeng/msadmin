@@ -11,6 +11,7 @@ import Layout from "./views/layout";
 import Login from "./views/login";
 import SignUp from "./views/signup";
 import Error404 from "./views/errorPages/404";
+import {getToken} from "./store";
 
 // import {Login} from "./views/login";
 
@@ -44,6 +45,7 @@ const mainRouter = createBrowserRouter([
 ])
 
 function App() {
+
     // const [theme, colorMode] = useMode();
     return (
         <React.StrictMode>
