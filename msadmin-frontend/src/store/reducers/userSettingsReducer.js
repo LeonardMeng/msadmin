@@ -6,7 +6,7 @@ import {
 } from '../actions/actionTypes';
 
 const initSettings = {
-    darkMode: false,
+    theme: 'light',
 }
 
 const userSettingsReducer = (state = initSettings, action) => {

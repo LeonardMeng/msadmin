@@ -3,6 +3,10 @@
  */
 import { createContext, useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
+import {setUserSettings} from "./store/actions/actions";
+import store from "./store";
+
+
 
 export const tokens = (mode) => ({
     ...(mode === "dark"
@@ -199,18 +203,29 @@ export const themeSettings = (mode) => {
 export const ColorModeContext = createContext({
     toggleColorMode: () => {},
 });
+// Map Redux state to component props
+
 
 export const useMode = () => {
-    const [mode, setMode] = useState("dark");
+
+    const userSettings =  store.getState().userSettings
+    const [mode, setMode] = useState(userSettings.theme);
+
 
     const colorMode = useMemo(
         () => ({
-            toggleColorMode: () =>
-                setMode((prev) => (prev === "light" ? "dark" : "light")),
+            toggleColorMode: () =>{
+                setMode((prev) => (prev === "light" ? "dark" : "light"))
+
+            }
+
         }),
         []
     );
-
+    setUserSettings({ ...userSettings, theme: mode });
     const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
     return [theme, colorMode];
 };
+
+

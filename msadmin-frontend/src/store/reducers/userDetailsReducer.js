@@ -5,6 +5,7 @@ import {
     SET_USER_DETAILS, GET_USER_DETAILS, DELETE_USER_DETAILS
 } from '../actions/actionTypes';
 
+
 const initUserInfo = {
     username: "",
     role: "",
@@ -16,7 +17,9 @@ const userDetailsReducer = (state = initUserInfo, action) => {
         case SET_USER_DETAILS:
             return {
                 ...state,
-                ...action.payload
+                username: action.username,
+                role: action.role,
+                avatar: action.avatar,
             };
         case GET_USER_DETAILS:
             return state; // In a real app, this might fetch data from an API
@@ -26,5 +29,18 @@ const userDetailsReducer = (state = initUserInfo, action) => {
             return state;
     }
 };
+
+//
+// export function setUerInfo(data){
+//     return Cookies.set(UserInfoKey, data)
+// }
+//
+// export function getUerInfo(){
+//     return Cookies.get(UserInfoKey)
+// }
+//
+// export function deleteUerInfo(){
+//     return Cookies.remove(UserInfoKey)
+// }
 
 export default userDetailsReducer;
