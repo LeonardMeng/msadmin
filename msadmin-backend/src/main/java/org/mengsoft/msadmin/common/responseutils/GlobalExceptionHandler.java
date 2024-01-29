@@ -6,6 +6,7 @@ import org.mengsoft.msadmin.common.responseutils.enums.ResponseCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestControllerAdvice
+@ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
@@ -26,6 +27,15 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    @ExceptionHandler(Exception.class)
+//    public ErrorResponse handleUncaughtException(Exception e, HttpServletRequest request){
+//        ErrorResponse errorResponse = ErrorResponse.fail(ResponseCode.SYSTEM_ERROR, e);
+//        log.error("URL: {} Exception:", request.getRequestURI(), e );
+//
+//        return errorResponse;
+//    }
+//
 
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)

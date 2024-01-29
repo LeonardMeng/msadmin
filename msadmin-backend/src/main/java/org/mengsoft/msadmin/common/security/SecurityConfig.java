@@ -1,6 +1,7 @@
 package org.mengsoft.msadmin.common.security;
 
 
+import org.mengsoft.msadmin.common.responseutils.GlobalExceptionHandler;
 import org.mengsoft.msadmin.common.security.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private GlobalExceptionHandler exceptionHandler;
 
     @Autowired
     private LoginSuccessHandler loginSuccessHandler;
@@ -102,12 +105,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
         .antMatchers(URL_WHITELIST).permitAll()  // 白名单 放行
         .anyRequest().authenticated()
-
-
         // 异常处理配置
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+        .and()
+        .exceptionHandling()
+        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
 
         // 自定义过滤器配置
         .and()

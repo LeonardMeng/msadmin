@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.mengsoft.msadmin.common.responseutils.enums.ResponseCode;
+import org.springframework.security.core.AuthenticationException;
 
 @Builder
 @AllArgsConstructor
@@ -14,6 +15,7 @@ public class ErrorResponse {
     private Integer statusCode;
     private String message;
     private String exception;
+
 
     /**
      *
@@ -37,4 +39,5 @@ public class ErrorResponse {
 
         return response;
     }
+
 }

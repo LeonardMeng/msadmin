@@ -14,8 +14,8 @@ import java.util.List;
 @Slf4j
 @RequestMapping(value="/test")
 public class TestController {
-//    @RequestMapping(value="/login", method= RequestMethod.GET, produces="application/json")
-//    public List<User> login() {
-//        return userService.list();
-//    }
+    @RequestMapping(value="/hello", method= RequestMethod.GET, produces="application/json")
+    public String login() {
+        return "Hello World";
+    }
 }

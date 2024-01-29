@@ -14,9 +14,12 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {setToken} from "../../utils/auth";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {testHello} from "../../api/test";
+import {Alert, Snackbar} from '@mui/material';
+import {useState} from "react";
 
 function Copyright(props) {
     return (
@@ -37,21 +40,39 @@ const defaultTheme = createTheme();
 
 export default function Login() {
     const navigate = useNavigate();
+
+    const [alert, setAlert] = useState(false);
+    const [alertContent, setAlertContent] = useState('');
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setAlert(false);
+    };
     const handleSubmit = (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+        // const data = new FormData(event.currentTarget);
+        // console.log({
+        //     email: data.get('email'),
+        //     password: data.get('password'),
+        // });
+        testHello().then((data) => {
+            console.log(data)
+            setToken('test-token')
+            return navigate("/dashboard");
+        }).catch((error) => {
+            console.log("error", error)
+            setAlertContent(error);
+            setAlert(true);
         });
-        setToken('test-token')
-        return navigate("/dashboard");
     };
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Box
                     sx={{
                         marginTop: 8,
@@ -60,13 +81,13 @@ export default function Login() {
                         alignItems: 'center',
                     }}
                 >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        <LockOutlinedIcon />
+                    <Avatar sx={{m: 1, bgcolor: 'secondary.main'}}>
+                        <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Log In
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{mt: 1}}>
                         <TextField
                             margin="normal"
                             required
@@ -88,14 +109,14 @@ export default function Login() {
                             autoComplete="current-password"
                         />
                         <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
+                            control={<Checkbox value="remember" color="primary"/>}
                             label="Remember me"
                         />
                         <Button
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Log In
                         </Button>
@@ -113,7 +134,22 @@ export default function Login() {
                         </Grid>
                     </Box>
                 </Box>
-                <Copyright sx={{ mt: 8, mb: 4 }} />
+                <Copyright sx={{mt: 8, mb: 4}}/>
+                <Snackbar open={alert}
+                          autoHideDuration={6000}
+                          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                          onClose={handleClose}
+                >
+                    <Alert
+                        onClose={handleClose}
+                        severity="error"
+                        variant="filled"
+                        sx={{ width: '100%' }}
+                    >
+                        {alertContent}
+                    </Alert>
+                </Snackbar>
+                {/*<Alert severity='error'>{alertContent}</Alert>*/}
             </Container>
         </ThemeProvider>
     );
