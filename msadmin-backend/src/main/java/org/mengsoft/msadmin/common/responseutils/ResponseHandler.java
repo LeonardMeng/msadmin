@@ -28,7 +28,7 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
                                   ServerHttpResponse serverHttpResponse) {
         if (o instanceof ErrorResponse) {
             ErrorResponse errorResponse = (ErrorResponse) o;
-            return Response.fail(errorResponse.getStatusCode(), errorResponse.getMessage());
+            return Response.fail(errorResponse.getStatus(), errorResponse.getMessage());
         } else if (o instanceof String) {
             return JsonUtil.object2Json(Response.success(o));
         }

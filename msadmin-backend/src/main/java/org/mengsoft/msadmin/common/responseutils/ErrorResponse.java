@@ -12,7 +12,7 @@ import org.springframework.security.core.AuthenticationException;
 @NoArgsConstructor
 @Data
 public class ErrorResponse {
-    private Integer statusCode;
+    private Integer status;
     private String message;
     private String exception;
 
@@ -34,7 +34,7 @@ public class ErrorResponse {
     public static ErrorResponse fail(ResponseCode responseCode, Throwable e){
         ErrorResponse response = new ErrorResponse();
         response.setMessage(responseCode.getMessage());
-        response.setStatusCode(responseCode.getCode());
+        response.setStatus(responseCode.getCode());
         response.setException(e.getClass().getName());
 
         return response;

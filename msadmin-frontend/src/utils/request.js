@@ -17,8 +17,9 @@ service.interceptors.request.use(
     // Do something before request is sent
     // if (store.getState().user.token) {
       // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
-      config.headers['X-Token'] = getToken()
+      config.headers['token'] = getToken()
     // }
+    console.log(config)
     return config;
   },
   (error) => {
@@ -39,8 +40,8 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    console.log(response)
-    if (res.statusCode !== 200) {
+    // console.log(response)
+    if (res.status !== 200) {
       // message.error(res.message)
       // console.log(res.message)
       // return (<Alert severity="warning">{res.message}</Alert>)

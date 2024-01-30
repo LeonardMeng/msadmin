@@ -17,9 +17,10 @@ import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import {setToken} from "../../utils/auth";
 import {useNavigate} from "react-router-dom";
-import {testHello} from "../../api/test";
+// import {testHello} from "../../api/test";
 import {Alert, Snackbar} from '@mui/material';
 import {useState} from "react";
+import {login} from "../../api/sso";
 
 function Copyright(props) {
     return (
@@ -58,9 +59,15 @@ export default function Login() {
         //     email: data.get('email'),
         //     password: data.get('password'),
         // });
-        testHello().then((data) => {
+        const data = new FormData(event.currentTarget);
+        const param = {
+            username: data.get('email'),
+            password: data.get('password')
+        }
+
+        login(param).then((data) => {
             console.log(data)
-            setToken('test-token')
+            setToken(data.token)
             return navigate("/dashboard");
         }).catch((error) => {
             console.log("error", error)
@@ -137,14 +144,14 @@ export default function Login() {
                 <Copyright sx={{mt: 8, mb: 4}}/>
                 <Snackbar open={alert}
                           autoHideDuration={6000}
-                          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                          anchorOrigin={{vertical: 'top', horizontal: 'center'}}
                           onClose={handleClose}
                 >
                     <Alert
                         onClose={handleClose}
                         severity="error"
                         variant="filled"
-                        sx={{ width: '100%' }}
+                        sx={{width: '100%'}}
                     >
                         {alertContent}
                     </Alert>

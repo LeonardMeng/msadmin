@@ -53,19 +53,19 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         if(currentUser == null)
             throw new BusinessException(ResponseCode.USER_NAME_OR_PASSWORD_ERROR);
         // 根据用户id获取所有的角色信息
-        List<Role> roleList = roleService.list(new QueryWrapper<Role>().inSql("id", "SELECT role_id FROM sys_user_role WHERE user_id=" + currentUser.getId()));
+        List<Role> roleList = roleService.list(new QueryWrapper<Role>().inSql("id", "SELECT role_id FROM user_role WHERE user_id=" + currentUser.getId()));
 
         // 遍历所有的角色，获取所有菜单权限 而且不重复
         Set<Menu> menuSet=new HashSet<>();
         for(Role sysRole:roleList){
-            List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().inSql("id", "SELECT menu_id FROM sys_role_menu WHERE role_id=" + sysRole.getId()));
+            List<Menu> menuList = menuService.list(new QueryWrapper<Menu>().inSql("id", "SELECT menu_id FROM role_menu WHERE role_id=" + sysRole.getId()));
             for(Menu menu:menuList){
                 menuSet.add(menu);
             }
         }
 
         currentUser.setRoles(roleList.stream().map(Role::getName).collect(Collectors.joining(",")));
-
+        currentUser.setPassword("");
         List<Menu> sysMenuList=new ArrayList<>(menuSet);
 
         // 排序
@@ -75,7 +75,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         List<Menu> menuList=menuService.buildTreeMenu(sysMenuList);
 
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("authorization", token);
+        resultMap.put("status", 200);
+        resultMap.put("token", token);
         resultMap.put("currentUser", currentUser);
         resultMap.put("menuList", menuList);
 

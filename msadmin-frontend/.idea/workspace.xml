@@ -5,17 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/DefaultExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/sso.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/GlobalExceptionHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ResponseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/JwtAuthenticationEntryPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/TestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +52,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "inlay.hints",
     "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
@@ -102,7 +99,8 @@
       <option name="presentableId" value="Default" />
       <updated>1705108905636</updated>
       <workItem from="1705108907959" duration="30229000" />
-      <workItem from="1705995736181" duration="7520000" />
+      <workItem from="1705995736181" duration="7885000" />
+      <workItem from="1706571495215" duration="3358000" />
     </task>
     <servers />
   </component>

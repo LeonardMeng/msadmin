@@ -10,7 +10,7 @@ public class Response <T> {
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(Response.class);
 
     private static final long serialVersionUID = -1802122468331526708L;
-    private int statusCode = -1;
+    private int status = -1;
     private String message = "待处理";
     private T data;
 
@@ -33,7 +33,7 @@ public class Response <T> {
 
     public static Response fail(Integer code, String message){
         Response response = new Response();
-        response.setStatusCode(code);
+        response.setStatus(code);
         response.setMessage(message);
         return response;
     }
@@ -45,7 +45,7 @@ public class Response <T> {
     }
 
     private void setResponseCode(ResponseCode responseCode){
-        this.statusCode = responseCode.getCode();
+        this.status = responseCode.getCode();
         this.message = responseCode.getMessage();
     }
 

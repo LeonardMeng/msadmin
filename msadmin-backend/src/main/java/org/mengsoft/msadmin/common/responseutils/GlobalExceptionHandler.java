@@ -27,17 +27,6 @@ public class GlobalExceptionHandler {
         return errorResponse;
     }
 
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    @ExceptionHandler(Exception.class)
-//    public ErrorResponse handleUncaughtException(Exception e, HttpServletRequest request){
-//        ErrorResponse errorResponse = ErrorResponse.fail(ResponseCode.SYSTEM_ERROR, e);
-//        log.error("URL: {} Exception:", request.getRequestURI(), e );
-//
-//        return errorResponse;
-//    }
-//
-
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse HandleMethodArgumentNotValidException(MethodArgumentNotValidException e,
@@ -64,7 +53,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ErrorResponse HandleIllegalArgumentException(IllegalArgumentException e, HttpServletRequest request){
-        ErrorResponse errorResponse = ErrorResponse.builder().statusCode(4000)
+        ErrorResponse errorResponse = ErrorResponse.builder().status(4000)
                 .message(e.getMessage())
                 .exception(e.getClass().getName())
                 .build();
@@ -75,7 +64,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(BusinessException.class)
     public ErrorResponse HandleBusinessException(BusinessException e, HttpServletRequest request){
-        ErrorResponse errorResponse = ErrorResponse.builder().statusCode(e.getStatusCode())
+        ErrorResponse errorResponse = ErrorResponse.builder().status(e.getStatus())
                 .message(e.getMessage())
                 .exception(e.getClass().getName())
                 .build();
