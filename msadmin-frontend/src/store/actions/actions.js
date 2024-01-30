@@ -1,7 +1,7 @@
 /**
  * Created by KanadeM on 17/1/2024
  */
-import * as types from './actionTypes';
+import * as types from '../actionTypes';
 
 // User Details Actions
 

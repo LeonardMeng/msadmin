@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/actions/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/reducers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Topbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/userDetailsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/userDetailsReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/userSettingsReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/userSettingsReducer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +63,11 @@
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store" />
       <recent name="$PROJECT_DIR$/src/utils" />
       <recent name="$PROJECT_DIR$/src/store/reducers" />
       <recent name="$PROJECT_DIR$/src/store/actions" />
       <recent name="$PROJECT_DIR$/src/components" />
-      <recent name="$PROJECT_DIR$/src/views/components" />
     </key>
   </component>
   <component name="RunManager">
@@ -104,7 +97,7 @@
       <updated>1705108905636</updated>
       <workItem from="1705108907959" duration="30229000" />
       <workItem from="1705995736181" duration="7885000" />
-      <workItem from="1706571495215" duration="12016000" />
+      <workItem from="1706571495215" duration="12363000" />
     </task>
     <servers />
   </component>

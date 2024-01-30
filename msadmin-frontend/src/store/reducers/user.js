@@ -2,7 +2,7 @@
  * Created by KanadeM on 30/1/2024
  */
 
-import * as types from "../actions/actionTypes";
+import * as types from "../actionTypes";
 
 export default function userTokenReducer(preState, action) {
     if (preState === undefined) {

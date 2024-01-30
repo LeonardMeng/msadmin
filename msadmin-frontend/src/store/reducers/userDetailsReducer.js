@@ -3,7 +3,7 @@
  */
 import {
     SET_USER_DETAILS, GET_USER_DETAILS, DELETE_USER_DETAILS
-} from '../actions/actionTypes';
+} from '../actionTypes';
 
 
 const initUserInfo = {

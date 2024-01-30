@@ -3,7 +3,7 @@
  */
 import {
     SET_USER_SETTINGS, GET_USER_SETTINGS, DELETE_USER_SETTINGS
-} from '../actions/actionTypes';
+} from '../actionTypes';
 
 const initSettings = {
     theme: 'light',
