@@ -21,6 +21,8 @@ import {useNavigate} from "react-router-dom";
 import {Alert, Snackbar} from '@mui/material';
 import {useState} from "react";
 import {login} from "../../api/sso";
+import {connect} from "react-redux";
+import {getUserToken, setUserToken} from "../../store/actions/actions";
 
 function Copyright(props) {
     return (
@@ -39,7 +41,13 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function Login() {
+const Login = (props) => {
+    const {
+        token,
+        setUserToken,
+    } = props;
+
+
     const navigate = useNavigate();
 
     const [alert, setAlert] = useState(false);
@@ -68,6 +76,9 @@ export default function Login() {
         login(param).then((data) => {
             console.log(data)
             setToken(data.token)
+            // console.log(props)
+            setUserToken(data.token)
+            // console.log('redux get user token', token)
             return navigate("/dashboard");
         }).catch((error) => {
             console.log("error", error)
@@ -161,3 +172,8 @@ export default function Login() {
         </ThemeProvider>
     );
 }
+export default connect(
+    state => ({
+        token: state.userToken
+    }),{ setUserToken, getUserToken}
+)(Login);

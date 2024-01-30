@@ -23,10 +23,16 @@ import Logout from '@mui/icons-material/Logout';
 // import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { logout} from "../../api/sso";
+import { connect } from "react-redux";
 import {removeToken} from "../../utils/auth";
 import {useNavigate} from "react-router-dom";
+import {removeUserToken} from "../../store/actions/actions";
 
-const Topbar = () => {
+const Topbar = (props) => {
+    const {
+        token,
+        removeUserToken,
+    } = props;
     const navigate = useNavigate();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -43,13 +49,20 @@ const Topbar = () => {
 
     const handleLogout = () => {
         setAnchorEl(null)
+        removeUserToken()
+        removeToken()
         logout().then((data) => {
             console.log(data)
-            removeToken()
-            return navigate("/login");
         }).catch((error) => {
 
         });
+        return navigate("/login");
+    }
+
+    const handlGetToken = () => {
+        console.log(token)
+        setAnchorEl(null)
+
     }
 
 
@@ -149,7 +162,7 @@ const Topbar = () => {
                 {/*    </ListItemIcon>*/}
                 {/*    Add another account*/}
                 {/*</MenuItem>*/}
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handlGetToken}>
                     <ListItemIcon>
                         <Settings fontSize="small"/>
                     </ListItemIcon>
@@ -192,4 +205,8 @@ const Topbar = () => {
     );
 };
 
-export default Topbar;
+export default connect(
+    state => ({
+        token: state.userToekn
+    }),{removeUserToken}
+    )(Topbar);
