@@ -19,7 +19,6 @@ service.interceptors.request.use(
       // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
       config.headers['token'] = getToken()
     // }
-    console.log(config)
     return config;
   },
   (error) => {

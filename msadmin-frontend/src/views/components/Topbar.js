@@ -22,8 +22,12 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 // import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import { logout} from "../../api/sso";
+import {removeToken} from "../../utils/auth";
+import {useNavigate} from "react-router-dom";
 
 const Topbar = () => {
+    const navigate = useNavigate();
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const colorMode = useContext(ColorModeContext);
@@ -36,6 +40,17 @@ const Topbar = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleLogout = () => {
+        setAnchorEl(null)
+        logout().then((data) => {
+            console.log(data)
+            removeToken()
+            return navigate("/login");
+        }).catch((error) => {
+
+        });
+    }
 
 
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
@@ -140,7 +155,7 @@ const Topbar = () => {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
                         <Logout fontSize="small"/>
                     </ListItemIcon>

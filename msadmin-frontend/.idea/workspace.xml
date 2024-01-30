@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/sso.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/responseutils/ResponseHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/security/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/sso.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/sso.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/request.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/request.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Topbar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,12 +97,23 @@
       <updated>1705108905636</updated>
       <workItem from="1705108907959" duration="30229000" />
       <workItem from="1705995736181" duration="7885000" />
-      <workItem from="1706571495215" duration="3358000" />
+      <workItem from="1706571495215" duration="5131000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
