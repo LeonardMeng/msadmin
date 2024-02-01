@@ -2,14 +2,12 @@
  * Created by KanadeM on 17/1/2024
  */
 import { combineReducers } from 'redux';
-import userTokenReducer from "./user";
-import userSettingsReducer from "./userSettingsReducer";
-import userDetailsReducer from "./userDetailsReducer";
+import {userTokenReducer, userInfoReducer, userSettingsReducer} from "./user";
 
 const allReducer = combineReducers({
     userToken: userTokenReducer,
     userSettings: userSettingsReducer,
-    userDetails: userDetailsReducer,
+    userInfo: userInfoReducer,
 });
 
 export default allReducer;

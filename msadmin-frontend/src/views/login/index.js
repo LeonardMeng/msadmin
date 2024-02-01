@@ -22,7 +22,7 @@ import {Alert, Snackbar} from '@mui/material';
 import {useState} from "react";
 import {login} from "../../api/sso";
 import {connect} from "react-redux";
-import {getUserToken, setUserToken} from "../../store/actions/actions";
+import {setUserToken} from "../../store/actions/actions";
 
 function Copyright(props) {
     return (
@@ -43,7 +43,6 @@ const defaultTheme = createTheme();
 
 const Login = (props) => {
     const {
-        token,
         setUserToken,
     } = props;
 
@@ -75,7 +74,7 @@ const Login = (props) => {
 
         login(param).then((data) => {
             console.log(data)
-            setToken(data.token)
+            // setToken(data.token)
             // console.log(props)
             setUserToken(data.token)
             // console.log('redux get user token', token)
@@ -175,5 +174,6 @@ const Login = (props) => {
 export default connect(
     state => ({
         token: state.userToken
-    }),{ setUserToken, getUserToken}
-)(Login);
+    }),{
+        setUserToken
+    })(Login);

@@ -1,29 +1,28 @@
 /**
  * Created by KanadeM on 17/1/2024
  */
-import {
-    SET_USER_DETAILS, GET_USER_DETAILS, DELETE_USER_DETAILS
-} from '../actionTypes';
+import * as types from '../actionTypes';
 
 
 const initUserInfo = {
     username: "",
     role: "",
     avatar:"",
+    menuList: []
 }
 
 const userDetailsReducer = (state = initUserInfo, action) => {
     switch (action.type) {
-        case SET_USER_DETAILS:
+        case types.SET_USER_INFO:
             return {
                 ...state,
                 username: action.username,
                 role: action.role,
                 avatar: action.avatar,
             };
-        case GET_USER_DETAILS:
+        case types.GET_USER_INFO:
             return state; // In a real app, this might fetch data from an API
-        case DELETE_USER_DETAILS:
+        case types.DELETE_USER_DETAILS:
             return initUserInfo; // Resets to initial state
         default:
             return state;

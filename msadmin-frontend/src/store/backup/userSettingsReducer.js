@@ -9,19 +9,19 @@ const initSettings = {
     theme: 'light',
 }
 
-const userSettingsReducer = (state = initSettings, action) => {
-    switch (action.type) {
+export const userSettingsReducer = (preState = initSettings, action) => {
+    const { type, data } = action
+    switch (type) {
         case SET_USER_SETTINGS:
             return {
-                ...state,
-                ...action.payload
+                theme: data
             };
         case GET_USER_SETTINGS:
-            return state; // In a real app, this might fetch data from an API
+            return preState; // In a real app, this might fetch data from an API
         case DELETE_USER_SETTINGS:
             return initSettings; // Resets to initial state
         default:
-            return state;
+            return preState;
     }
 };
 

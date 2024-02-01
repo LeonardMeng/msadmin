@@ -1,10 +1,8 @@
 /**
  * Created by KanadeM on 13/1/2024
  */
-import { createContext, useState, useMemo } from "react";
+import { createContext, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
-import {setUserSettings} from "./store/actions/actions";
-import store from "./store";
 
 
 
@@ -206,24 +204,25 @@ export const ColorModeContext = createContext({
 // Map Redux state to component props
 
 
-export const useMode = () => {
+export const useMode = (userSettingsTheme) => {
 
-    const userSettings =  store.getState().userSettings
-    const [mode, setMode] = useState(userSettings.theme);
-
+    // const userSettings =  store.getState().userSettings
+    // const [mode, setMode] = useState(userSettings.theme);
 
     const colorMode = useMemo(
         () => ({
             toggleColorMode: () =>{
-                setMode((prev) => (prev === "light" ? "dark" : "light"))
+                // setMode((prev) => (prev === "light" ? "dark" : "light"))
+                // eslint-disable-next-line no-unused-expressions
+                // userSettingsTheme === "light" ? "dark" : "light"
 
             }
 
         }),
         []
     );
-    setUserSettings({ ...userSettings, theme: mode });
-    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+
+    const theme = useMemo(() => createTheme(themeSettings(userSettingsTheme)), [userSettingsTheme]);
 
     return [theme, colorMode];
 };

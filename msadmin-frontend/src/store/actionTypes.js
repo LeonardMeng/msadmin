@@ -3,8 +3,8 @@
  */
 
 // actionTypes.js
-export const SET_USER_DETAILS = 'SET_USER_DETAILS';
-export const GET_USER_DETAILS = 'GET_USER_DETAILS';
+export const SET_USER_INFO = 'SET_USER_INFO';
+export const GET_USER_INFO = 'GET_USER_INFO';
 export const DELETE_USER_DETAILS = 'DELETE_USER_DETAILS';
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 export const GET_USER_TOKEN = 'GET_USER_TOKEN';

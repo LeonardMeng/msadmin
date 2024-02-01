@@ -26,11 +26,13 @@ import { logout} from "../../api/sso";
 import { connect } from "react-redux";
 import {removeToken} from "../../utils/auth";
 import {useNavigate} from "react-router-dom";
-import {removeUserToken} from "../../store/actions/actions";
+import {removeUserToken, setUserSettings} from "../../store/actions/actions";
 
 const Topbar = (props) => {
     const {
         token,
+        userSettings,
+        setUserSettings,
         removeUserToken,
     } = props;
     const navigate = useNavigate();
@@ -43,6 +45,12 @@ const Topbar = (props) => {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
+
+    const handleThemeChange = () => {
+        setUserSettings(userSettings.theme === "light" ? "dark" : "light")
+        colorMode.toggleColorMode()
+    }
+
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -50,7 +58,6 @@ const Topbar = (props) => {
     const handleLogout = () => {
         setAnchorEl(null)
         removeUserToken()
-        removeToken()
         logout().then((data) => {
             console.log(data)
         }).catch((error) => {
@@ -85,7 +92,7 @@ const Topbar = (props) => {
 
                 {/* ICONS */}
                 <Box display="flex">
-                    <IconButton onClick={colorMode.toggleColorMode}>
+                    <IconButton onClick={handleThemeChange}>
                         {theme.palette.mode === "dark" ? (
                             <DarkModeOutlinedIcon/>
                         ) : (
@@ -207,6 +214,10 @@ const Topbar = (props) => {
 
 export default connect(
     state => ({
-        token: state.userToekn
-    }),{removeUserToken}
+        token: state.userToekn,
+        userSettings: state.userSettings
+    }),{
+        setUserSettings,
+        removeUserToken
+    }
     )(Topbar);

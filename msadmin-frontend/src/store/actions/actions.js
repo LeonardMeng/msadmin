@@ -18,13 +18,13 @@ export const removeUserToken = () => {
 }
 
 
-export const setUserDetails = userDetails => ({
-    type: types.SET_USER_DETAILS,
-    payload: userDetails
+export const setUserDetails = userInfo => ({
+    type: types.SET_USER_INFO,
+    userInfo
 });
 
-export const getUserDetails = () => ({
-    type: types.GET_USER_DETAILS
+export const getUserInfo = () => ({
+    type: types.GET_USER_INFO
 });
 
 export const deleteUserDetails = () => ({
@@ -32,9 +32,9 @@ export const deleteUserDetails = () => ({
 });
 
 // User Settings Actions
-export const setUserSettings = userSettings => ({
+export const setUserSettings = data => ({
     type: types.SET_USER_SETTINGS,
-    payload: userSettings
+    data
 });
 
 export const getUserSettings = () => ({
