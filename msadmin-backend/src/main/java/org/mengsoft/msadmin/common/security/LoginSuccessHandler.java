@@ -76,9 +76,11 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("status", 200);
-        resultMap.put("token", token);
-        resultMap.put("currentUser", currentUser);
-        resultMap.put("menuList", menuList);
+        Map<String, Object> loginInfoMap = new HashMap<>();
+        loginInfoMap.put("token", token);
+        loginInfoMap.put("currentUser", currentUser);
+        loginInfoMap.put("menuList", menuList);
+        resultMap.put("data", loginInfoMap);
 
 //        outputStream.write(JSONUtil.toJsonStr(R.ok("登录成功").put("authorization",token).put("currentUser",currentUser).put("menuList",menuList)).
         outputStream.write(JSONUtil.toJsonStr(resultMap).getBytes());

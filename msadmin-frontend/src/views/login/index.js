@@ -15,14 +15,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
-import {setToken} from "../../utils/auth";
+// import {setToken} from "../../utils/auth";
 import {useNavigate} from "react-router-dom";
 // import {testHello} from "../../api/test";
 import {Alert, Snackbar} from '@mui/material';
 import {useState} from "react";
 import {login} from "../../api/sso";
 import {connect} from "react-redux";
-import {setUserToken} from "../../store/actions/actions";
+import {setUserToken, setUserInfo} from "../../store/actions/actions";
 
 function Copyright(props) {
     return (
@@ -44,6 +44,7 @@ const defaultTheme = createTheme();
 const Login = (props) => {
     const {
         setUserToken,
+        setUserInfo
     } = props;
 
 
@@ -74,9 +75,15 @@ const Login = (props) => {
 
         login(param).then((data) => {
             console.log(data)
+            // debugger
             // setToken(data.token)
             // console.log(props)
             setUserToken(data.token)
+            setUserInfo({
+                ...data.currentUser,
+                menuList: data.menuList
+
+            })
             // console.log('redux get user token', token)
             return navigate("/dashboard");
         }).catch((error) => {
@@ -173,7 +180,9 @@ const Login = (props) => {
 }
 export default connect(
     state => ({
-        token: state.userToken
+        token: state.userToken,
+        userInfo: state.userInfo
     }),{
-        setUserToken
+        setUserToken,
+        setUserInfo,
     })(Login);

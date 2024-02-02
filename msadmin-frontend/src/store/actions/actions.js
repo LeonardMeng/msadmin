@@ -18,16 +18,16 @@ export const removeUserToken = () => {
 }
 
 
-export const setUserDetails = userInfo => ({
+export const setUserInfo = data => ({
     type: types.SET_USER_INFO,
-    userInfo
+    data
 });
 
 export const getUserInfo = () => ({
     type: types.GET_USER_INFO
 });
 
-export const deleteUserDetails = () => ({
+export const deleteUserInfo = () => ({
     type: types.DELETE_USER_DETAILS
 });
 

@@ -5,6 +5,7 @@
 import * as types from "../actionTypes";
 import {removeToken, setToken} from "../../utils/auth";
 import {DELETE_USER_SETTINGS, GET_USER_SETTINGS, SET_USER_SETTINGS} from "../actionTypes";
+import {removeUserInfo, setUserInfo} from "../../utils/user";
 
 const initUserInfo = {
     username: "",
@@ -19,7 +20,6 @@ export function userTokenReducer(preState, action) {
     }
 
     const { type, data } = action
-
     switch (type) {
         case types.SET_USER_TOKEN:
             setToken(data)
@@ -32,21 +32,21 @@ export function userTokenReducer(preState, action) {
     }
 }
 
-export const userInfoReducer = (state = initUserInfo, action) => {
-    switch (action.type) {
+export const userInfoReducer = (preState = initUserInfo, action) => {
+    const { type, data } = action
+    switch (type) {
         case types.SET_USER_INFO:
+            setUserInfo(data)
             return {
-                ...state,
-                username: action.username,
-                role: action.role,
-                avatar: action.avatar,
+                ...data
             };
         case types.GET_USER_INFO:
-            return state; // In a real app, this might fetch data from an API
+            return preState; // In a real app, this might fetch data from an API
         case types.DELETE_USER_DETAILS:
+            removeUserInfo()
             return initUserInfo; // Resets to initial state
         default:
-            return state;
+            return preState;
     }
 };
 
