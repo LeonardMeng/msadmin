@@ -6,34 +6,39 @@ import {
     Dialog,
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle,
-    Typography,
     useTheme
 } from "@mui/material";
 import {useEffect, useState} from 'react';
 import {DataGrid} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
-import {mockDataTeam} from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
-import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
-import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
+//import {mockDataTeam} from "../../data/mockData";
 import Header from "../../components/Header";
 import {getAllUsers} from "../../api/user";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+
 
 const UserManagement = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [userData, setUserData] = useState([])
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [isEdit, setIsEdit] = useState(true);
+    const [selectedUserInfo, setselectedUserInfo] = useState({});
 
-    const handleDialogOpen = () => {
+    const handleUserDialogOpen = (row, edit) => {
+        setselectedUserInfo({
+            username: row.username,
+            email: row.email,
+            phonenumber: row.phonenumber,
+        })
+        setIsEdit(edit);
         setDialogOpen(true);
     };
 
     const handleDialogClose = () => {
+        setselectedUserInfo({})
         setDialogOpen(false);
     };
     const columns = [
@@ -65,7 +70,7 @@ const UserManagement = () => {
             field: "accessLevel",
             headerName: "Operations",
             flex: 1,
-            renderCell: ({row: {access}}) => {
+            renderCell: (params) => {
                 return (
                     <Box
                         width="60%"
@@ -82,15 +87,17 @@ const UserManagement = () => {
                         // }
                         borderRadius="4px"
                     >
-                        <Button variant="contained" color="success" onClick={handleDialogOpen}>View</Button>
-                        <Button variant="contained" color="success" sx={{ml: "5px"}}>Edit</Button>
+                        <Button variant="contained" color="success"
+                                onClick={() => handleUserDialogOpen(params.row, false)}>View</Button>
+                        <Button variant="contained" color="success" sx={{ml: "5px"}}
+                                onClick={() => handleUserDialogOpen(params.row, true)}>Edit</Button>
                         <Button variant="contained" color="error" sx={{ml: "5px"}}>Delete</Button>
                         {/*{access === "admin" && <AdminPanelSettingsOutlinedIcon/>}*/}
                         {/*{access === "manager" && <SecurityOutlinedIcon/>}*/}
                         {/*{access === "user" && <LockOpenOutlinedIcon/>}*/}
-                        <Typography color={colors.grey[100]} sx={{ml: "5px"}}>
-                            {access}
-                        </Typography>
+                        {/*<Typography color={colors.grey[100]} sx={{ml: "5px"}}>*/}
+                        {/*    {access}*/}
+                        {/*</Typography>*/}
                     </Box>
                 );
             },
@@ -137,7 +144,7 @@ const UserManagement = () => {
                     },
                 }}
             >
-                <DataGrid checkboxSelection rows={userData} columns={columns}/>
+                <DataGrid rows={userData} columns={columns}/>
                 {/*<DataGrid checkboxSelection rows={mockDataTeam} columns={columns}/>*/}
                 <Dialog
                     open={dialogOpen}
@@ -154,28 +161,57 @@ const UserManagement = () => {
                         },
                     }}
                 >
-                    <DialogTitle>Subscribe</DialogTitle>
+                    <DialogTitle>User Detail</DialogTitle>
                     <DialogContent>
-                        <DialogContentText>
-                            To subscribe to this website, please enter your email address here. We
-                            will send updates occasionally.
-                        </DialogContentText>
+                        {/*<DialogContentText>*/}
+                        {/*    To subscribe to this website, please enter your email address here. We*/}
+                        {/*    will send updates occasionally.*/}
+                        {/*</DialogContentText>*/}
                         <TextField
-                            autoFocus
-                            required
-                            margin="dense"
-                            id="name"
-                            name="email"
-                            label="Email Address"
-                            type="email"
-                            fullWidth
-                            variant="standard"
+                            sx={{ml: "5px", mt: "10px"}}
+                            id="outlined-read-only-input"
+                            label="Username"
+                            defaultValue={selectedUserInfo.username}
+                            InputProps={{
+                                readOnly: !isEdit,
+                            }}
                         />
+                        <TextField
+                            sx={{ml: "5px", mt: "10px"}}
+                            id="outlined-read-only-input"
+                            label="Email"
+                            defaultValue={selectedUserInfo.email}
+                            InputProps={{
+                                readOnly: !isEdit,
+                            }}
+                        />
+                        <TextField
+                            sx={{ml: "5px", mt: "10px"}}
+                            id="outlined-read-only-input"
+                            label="Phone Number"
+                            defaultValue={selectedUserInfo.phonenumber}
+                            InputProps={{
+                                readOnly: !isEdit,
+                            }}
+                        />
+                        {/*<TextField*/}
+                        {/*    autoFocus*/}
+                        {/*    required*/}
+                        {/*    margin="dense"*/}
+                        {/*    id="name"*/}
+                        {/*    name="email"*/}
+                        {/*    label="Email Address"*/}
+                        {/*    type="email"*/}
+                        {/*    fullWidth*/}
+                        {/*    variant="standard"*/}
+                        {/*/>*/}
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleDialogClose}>Cancel</Button>
-                        <Button type="submit">Subscribe</Button>
-                    </DialogActions>
+                    {isEdit &&
+                        <DialogActions>
+                            <Button onClick={handleDialogClose}>Cancel</Button>
+                            <Button type="submit">Subscribe</Button>
+                        </DialogActions>}
+
                 </Dialog>
             </Box>
         </Box>
