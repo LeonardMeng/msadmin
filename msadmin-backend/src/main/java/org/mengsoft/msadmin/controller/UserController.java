@@ -29,7 +29,7 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value="/list", method= RequestMethod.GET, produces="application/json")
-    @PreAuthorize("hasAnyAuthority('system:user:list')")
+    @PreAuthorize("hasAnyAuthority('system2:user:list')")
 //    @PreAuthorize("hasRole('ROLE_common')")
     public Map<String,Object> userList(@RequestHeader(required = false) String token){
         if(StringUtil.isNotEmpty(token)){

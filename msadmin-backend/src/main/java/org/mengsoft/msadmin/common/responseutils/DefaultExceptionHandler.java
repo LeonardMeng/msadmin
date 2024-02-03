@@ -17,7 +17,7 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorResponse> handleAuthenticationException(Exception ex) {
 
 //        throw new BusinessException(ResponseCode.USER_NOT_LOGIN);
-        ErrorResponse re = new ErrorResponse(20000, ex.getMessage(), ex.getMessage());
+        ErrorResponse re = new ErrorResponse(40001, ex.getMessage(), ex.getMessage());
         return ResponseEntity.status(HttpStatus.OK).body(re);
     }
 }

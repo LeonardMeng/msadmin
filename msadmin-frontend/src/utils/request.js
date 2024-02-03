@@ -1,6 +1,10 @@
 import axios from "axios";
 // import store from "../store";
 import {getToken} from "./auth";
+import { message } from 'antd';
+import { showMessage } from './showMessage';
+
+
 // import Alert from '@mui/material/Alert';
 
 //创建一个axios示例
@@ -24,7 +28,7 @@ service.interceptors.request.use(
     },
     (error) => {
         // Do something with request error
-        console.log(error); // for debug
+        message.error(error)
         Promise.reject(error);
     }
 );
@@ -41,11 +45,11 @@ service.interceptors.response.use(
     response => {
         const res = response.data
         // console.log(response)
-        if (res.status !== 200) {
+        if (res.status === 200) {
+            return res.data
             // message.error(res.message)
             // console.log(res.message)
             // return (<Alert severity="warning">{res.message}</Alert>)
-            return Promise.reject(res.message)
             // 50008:非法的token; 50012:其他客户端登录了;  50014:Token 过期了;
             // if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
             //   // 请自行在引入 MessageBox
@@ -61,7 +65,10 @@ service.interceptors.response.use(
             //   // })
             // }
         } else {
-            return res.data
+            // message.error(res.message)
+            showMessage(res.message, 'error')
+            return Promise.reject(res.message)
+            // return (<Alert severity="error">{res.message}</Alert>)
         }
     },
     (error) => {
@@ -83,6 +90,8 @@ service.interceptors.response.use(
         //     },
         //   });
         // }
+
+        showMessage(error.message, 'error')
         return Promise.reject(error);
     }
 );

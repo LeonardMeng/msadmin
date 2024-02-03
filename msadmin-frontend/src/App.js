@@ -48,9 +48,9 @@ function App() {
 
     // const [theme, colorMode] = useMode();
     return (
-        <React.StrictMode>
+        // <React.StrictMode>
             <RouterProvider store={store} router={mainRouter}/>
-        </React.StrictMode>
+        // </React.StrictMode>
 )}
 
 

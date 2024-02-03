@@ -104,14 +104,15 @@ const UserManagement = () => {
         },
     ];
 
-    useEffect(() => {
+    useEffect( () => {
         getAllUsers().then((data) => {
                 setUserData(data.userList)
             }
-        ).catch(
-
+        ).catch((error) => {
+                console.log(error)
+            }
         )
-    }, [])
+    },[])
     return (
         <Box m="20px">
             <Header title="User Management" subtitle="Managing the Team Members"/>
