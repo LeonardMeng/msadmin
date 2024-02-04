@@ -1,6 +1,5 @@
-
-import { createBrowserRouter, RouterProvider} from "react-router-dom";
-import React from "react";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import React, {useEffect} from "react";
 
 import Dashboard from "./views/dashboard";
 import UserManagement from "./views/userManagement";
@@ -12,6 +11,9 @@ import Login from "./views/login";
 import SignUp from "./views/signup";
 import Error404 from "./views/errorPages/404";
 import store from "./store";
+import {connect} from "react-redux";
+import {setUserInfo, setUserToken} from "./store/actions/actions";
+import {getUserMenu} from "./utils/user";
 
 // import {Login} from "./views/login";
 
@@ -27,31 +29,82 @@ import store from "./store";
 //         ]
 //     },
 // )
+const componentMapping = {
+    '/dashboard': Dashboard,
+    '/userManagement': UserManagement,
+    '/contacts': Contacts,
+    '/invoices': Invoices,
+    '/geography': Geography,
+};
 
-const mainRouter = createBrowserRouter([
+const baseRouter = createBrowserRouter([
     {path: '/login', element: <Login/>},
     {path: '/signUp', element: <SignUp/>},
     {
         path: '/', element: <Layout/>, children: [
-            {path: '/dashboard', element: <Dashboard/>},
-            {path: '/userManagement', element: <UserManagement/>},
-            {path: '/contacts', element: <Contacts/>},
-            {path: '/invoices', element: <Invoices/>},
-            {path: '/geography', element: <Geography/>}
+            {path: '/dashboard', element: <Dashboard/>}
         ]
-    },{
+    }, {
         path: '*', element: <Error404/>
     }
 ])
 
-function App() {
+const generateRoutesFromMenuList = (menuList) => {
+    const childRoutes = [];
+
+    menuList.forEach(menu => {
+        if (menu.menuType === 'M' && menu.children) {
+            menu.children.forEach(subMenu => {
+                if (subMenu.menuType === 'C' && componentMapping[subMenu.path]) {
+                    childRoutes.push({
+                        path: subMenu.path,
+                        element: React.createElement(componentMapping[subMenu.path]),
+                    });
+                }
+            });
+        }
+    });
+
+    return childRoutes;
+};
+
+const App = (props) => {
+    const {userToken} = props;
+    const [routes, setRoutes] = React.useState(baseRouter);
+    useEffect(() => {
+        const menuList = getUserMenu()
+        const childrenRoutes = generateRoutesFromMenuList(menuList);
+        childrenRoutes.push({path: '/dashboard', element: <Dashboard/>})
+
+        const mainRouter = createBrowserRouter([
+            {path: '/login', element: <Login/>},
+            {path: '/signUp', element: <SignUp/>},
+            {
+                path: '/',
+                element: <Layout/>,
+                children: childrenRoutes,
+            },
+            {path: '*', element: <Error404/>},
+        ]);
+        if (childrenRoutes.length > 0) {
+            setRoutes(mainRouter)
+        }
+        return () => {
+
+        };
+    }, [userToken]);
+
 
     // const [theme, colorMode] = useMode();
     return (
         // <React.StrictMode>
-            <RouterProvider store={store} router={mainRouter}/>
+        <RouterProvider store={store} router={routes}/>
         // </React.StrictMode>
-)}
+    )
+}
 
 
-export default App;
+export default connect(
+    state => ({
+        userToken: state.userToken,
+    }), {})(App);
