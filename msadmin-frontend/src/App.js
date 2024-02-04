@@ -14,6 +14,7 @@ import store from "./store";
 import {connect} from "react-redux";
 import {setUserInfo, setUserToken} from "./store/actions/actions";
 import {getUserMenu} from "./utils/user";
+import AuthWrapper from "./utils/AuthWrapper";
 
 // import {Login} from "./views/login";
 
@@ -81,7 +82,7 @@ const App = (props) => {
             {path: '/signUp', element: <SignUp/>},
             {
                 path: '/',
-                element: <Layout/>,
+                element: <AuthWrapper><Layout /></AuthWrapper>,
                 children: childrenRoutes,
             },
             {path: '*', element: <Error404/>},

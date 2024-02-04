@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/AuthWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/AuthWrapper.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,7 @@
       <workItem from="1705995736181" duration="7885000" />
       <workItem from="1706571495215" duration="16173000" />
       <workItem from="1706652922262" duration="17850000" />
-      <workItem from="1706923406772" duration="7443000" />
+      <workItem from="1706923406772" duration="8546000" />
     </task>
     <servers />
   </component>
