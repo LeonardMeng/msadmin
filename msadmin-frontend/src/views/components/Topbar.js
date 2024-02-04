@@ -24,7 +24,6 @@ import Logout from '@mui/icons-material/Logout';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { logout} from "../../api/sso";
 import { connect } from "react-redux";
-import {removeToken} from "../../utils/auth";
 import {useNavigate} from "react-router-dom";
 import {removeUserToken, setUserSettings} from "../../store/actions/actions";
 

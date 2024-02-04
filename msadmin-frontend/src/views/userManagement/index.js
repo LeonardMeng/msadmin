@@ -25,10 +25,10 @@ const UserManagement = () => {
     const [userData, setUserData] = useState([])
     const [dialogOpen, setDialogOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(true);
-    const [selectedUserInfo, setselectedUserInfo] = useState({});
+    const [selectedUserInfo, setSelectedUserInfo] = useState({});
 
     const handleUserDialogOpen = (row, edit) => {
-        setselectedUserInfo({
+        setSelectedUserInfo({
             username: row.username,
             email: row.email,
             phonenumber: row.phonenumber,
@@ -38,7 +38,7 @@ const UserManagement = () => {
     };
 
     const handleDialogClose = () => {
-        setselectedUserInfo({})
+        setSelectedUserInfo({})
         setDialogOpen(false);
     };
     const columns = [
@@ -145,8 +145,12 @@ const UserManagement = () => {
                     },
                 }}
             >
+
+                <Button variant="contained" color="success"
+                        onClick={() => handleUserDialogOpen({}, true)}>New</Button>
                 <DataGrid rows={userData} columns={columns}/>
                 {/*<DataGrid checkboxSelection rows={mockDataTeam} columns={columns}/>*/}
+
                 <Dialog
                     open={dialogOpen}
                     onClose={handleDialogClose}

@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="980623dc-454b-40d1-b608-8a819bbd48ca" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/common/config/MybatisPlusConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/entity/PageBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../msadmin-backend/src/main/java/org/mengsoft/msadmin/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/AuthWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/AuthWrapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/Topbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/Topbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/userManagement/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/userManagement/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +101,7 @@
       <workItem from="1705995736181" duration="7885000" />
       <workItem from="1706571495215" duration="16173000" />
       <workItem from="1706652922262" duration="17850000" />
-      <workItem from="1706923406772" duration="8546000" />
+      <workItem from="1706923406772" duration="10054000" />
     </task>
     <servers />
   </component>
@@ -117,5 +121,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/views/userManagement/index.js</url>
+          <line>155</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

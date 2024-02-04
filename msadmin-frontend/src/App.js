@@ -12,7 +12,6 @@ import SignUp from "./views/signup";
 import Error404 from "./views/errorPages/404";
 import store from "./store";
 import {connect} from "react-redux";
-import {setUserInfo, setUserToken} from "./store/actions/actions";
 import {getUserMenu} from "./utils/user";
 import AuthWrapper from "./utils/AuthWrapper";
 
