@@ -3,10 +3,6 @@
  */
 import {
     Box,
-    Dialog,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
     useTheme
 } from "@mui/material";
 import {useEffect, useState} from 'react';
@@ -16,30 +12,40 @@ import {tokens} from "../../theme";
 import Header from "../../components/Header";
 import {getAllUsers} from "../../api/user";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import ViewDialog from "./components/ViewDialog";
+import AddUserDialog from "./components/AddUserDialog";
 
 
 const UserManagement = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [userData, setUserData] = useState([])
-    const [dialogOpen, setDialogOpen] = useState(false);
+    const [viewDialogOpen, setViewDialogOpen] = useState(false);
+    const [newDialogOpen, setNewDialogOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(true);
     const [selectedUserInfo, setSelectedUserInfo] = useState({});
 
-    const handleUserDialogOpen = (row, edit) => {
+    const handleViewDialogOpen = (row, edit) => {
         setSelectedUserInfo({
             username: row.username,
             email: row.email,
             phonenumber: row.phonenumber,
         })
         setIsEdit(edit);
-        setDialogOpen(true);
+        setViewDialogOpen(true);
     };
 
-    const handleDialogClose = () => {
+    const handleNewDialogOpen = () => {
+        setNewDialogOpen(true);
+    }
+    const handleViewDialogClose = () => {
         setSelectedUserInfo({})
-        setDialogOpen(false);
+        setViewDialogOpen(false);
+    };
+
+
+    const handleNewDialogClose = () => {
+        setNewDialogOpen(false);
     };
     const columns = [
         {field: "id", headerName: "ID"},
@@ -88,9 +94,9 @@ const UserManagement = () => {
                         borderRadius="4px"
                     >
                         <Button variant="contained" color="success"
-                                onClick={() => handleUserDialogOpen(params.row, false)}>View</Button>
+                                onClick={() => handleViewDialogOpen(params.row, false)}>View</Button>
                         <Button variant="contained" color="success" sx={{ml: "5px"}}
-                                onClick={() => handleUserDialogOpen(params.row, true)}>Edit</Button>
+                                onClick={() => handleViewDialogOpen(params.row, true)}>Edit</Button>
                         <Button variant="contained" color="error" sx={{ml: "5px"}}>Delete</Button>
                         {/*{access === "admin" && <AdminPanelSettingsOutlinedIcon/>}*/}
                         {/*{access === "manager" && <SecurityOutlinedIcon/>}*/}
@@ -147,77 +153,12 @@ const UserManagement = () => {
             >
 
                 <Button variant="contained" color="success"
-                        onClick={() => handleUserDialogOpen({}, true)}>New</Button>
+                        onClick={() => handleNewDialogOpen({}, true)}>New</Button>
                 <DataGrid rows={userData} columns={columns}/>
                 {/*<DataGrid checkboxSelection rows={mockDataTeam} columns={columns}/>*/}
+                <ViewDialog open={viewDialogOpen} userInfo={selectedUserInfo} isEdit={isEdit} handleClose={handleViewDialogClose}  />
+                <AddUserDialog open={newDialogOpen} handleClose={handleNewDialogClose} />
 
-                <Dialog
-                    open={dialogOpen}
-                    onClose={handleDialogClose}
-                    PaperProps={{
-                        component: 'form',
-                        onSubmit: (event) => {
-                            event.preventDefault();
-                            const formData = new FormData(event.currentTarget);
-                            const formJson = Object.fromEntries(formData.entries());
-                            const email = formJson.email;
-                            console.log(email);
-                            handleDialogClose();
-                        },
-                    }}
-                >
-                    <DialogTitle>User Detail</DialogTitle>
-                    <DialogContent>
-                        {/*<DialogContentText>*/}
-                        {/*    To subscribe to this website, please enter your email address here. We*/}
-                        {/*    will send updates occasionally.*/}
-                        {/*</DialogContentText>*/}
-                        <TextField
-                            sx={{ml: "5px", mt: "10px"}}
-                            id="outlined-read-only-input"
-                            label="Username"
-                            defaultValue={selectedUserInfo.username}
-                            InputProps={{
-                                readOnly: !isEdit,
-                            }}
-                        />
-                        <TextField
-                            sx={{ml: "5px", mt: "10px"}}
-                            id="outlined-read-only-input"
-                            label="Email"
-                            defaultValue={selectedUserInfo.email}
-                            InputProps={{
-                                readOnly: !isEdit,
-                            }}
-                        />
-                        <TextField
-                            sx={{ml: "5px", mt: "10px"}}
-                            id="outlined-read-only-input"
-                            label="Phone Number"
-                            defaultValue={selectedUserInfo.phonenumber}
-                            InputProps={{
-                                readOnly: !isEdit,
-                            }}
-                        />
-                        {/*<TextField*/}
-                        {/*    autoFocus*/}
-                        {/*    required*/}
-                        {/*    margin="dense"*/}
-                        {/*    id="name"*/}
-                        {/*    name="email"*/}
-                        {/*    label="Email Address"*/}
-                        {/*    type="email"*/}
-                        {/*    fullWidth*/}
-                        {/*    variant="standard"*/}
-                        {/*/>*/}
-                    </DialogContent>
-                    {isEdit &&
-                        <DialogActions>
-                            <Button onClick={handleDialogClose}>Cancel</Button>
-                            <Button type="submit">Subscribe</Button>
-                        </DialogActions>}
-
-                </Dialog>
             </Box>
         </Box>
     );
