@@ -9,3 +9,12 @@ export function getAllUsers() {
         method: 'get'
     })
 }
+
+export function queryUsers(data) {
+    return request({
+        url: '/user/query',
+        method: 'post',
+        data
+    })
+}
+

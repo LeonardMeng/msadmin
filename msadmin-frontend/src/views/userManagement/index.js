@@ -2,7 +2,8 @@
  * Created by KanadeM on 13/1/2024
  */
 import {
-    Box,
+    Badge,
+    Box, IconButton,
     useTheme
 } from "@mui/material";
 import {useEffect, useState} from 'react';
@@ -10,14 +11,31 @@ import {DataGrid} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 //import {mockDataTeam} from "../../data/mockData";
 import Header from "../../components/Header";
-import {getAllUsers} from "../../api/user";
+import {getAllUsers, queryUsers} from "../../api/user";
 import Button from "@mui/material/Button";
 import ViewDialog from "./components/ViewDialog";
 import AddUserDialog from "./components/AddUserDialog";
+import TextField from "@mui/material/TextField";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import * as React from "react";
+import {Pagination} from "antd";
+import {login} from "../../api/sso";
 
 
 const UserManagement = () => {
     const theme = useTheme();
+
+    const [query, setQuery] = useState({
+        query: '',
+        pageNum: 1,
+        pageSize: 10
+    });
     const colors = tokens(theme.palette.mode);
     const [userData, setUserData] = useState([])
     const [viewDialogOpen, setViewDialogOpen] = useState(false);
@@ -47,6 +65,36 @@ const UserManagement = () => {
     const handleNewDialogClose = () => {
         setNewDialogOpen(false);
     };
+
+    const handleSearchBoxChange = (event) => {
+        setQuery({
+            ...query,
+            query: event.target.value
+        })
+        // setQuery(event.target.value);
+    };
+
+    const handleUserQuery = (event) => {
+        // console.log(query)
+        queryUsers(query).then((data) => {
+            // console.log(data)
+            setUserData(data.userList)
+            setQuery({
+                ...query,
+                pageNum: 1,
+                pageSize: 10
+            })
+        }).catch((error) => {
+        });
+    }
+
+    const handlePageChange = (event) => {
+        setQuery({
+            ...query,
+            pageNum: event.page,
+            pageSize: event.pageSize
+        })
+    }
     const columns = [
         {field: "id", headerName: "ID"},
         {
@@ -110,7 +158,7 @@ const UserManagement = () => {
         },
     ];
 
-    useEffect( () => {
+    useEffect(() => {
         getAllUsers().then((data) => {
                 setUserData(data.userList)
             }
@@ -118,7 +166,7 @@ const UserManagement = () => {
                 console.log(error)
             }
         )
-    },[])
+    }, [])
     return (
         <Box m="20px">
             <Header title="User Management" subtitle="Managing the Team Members"/>
@@ -151,15 +199,54 @@ const UserManagement = () => {
                     },
                 }}
             >
+                <Box display="flex" justifyContent="space-between" p={2}>
+                    {/* SEARCH BAR */}
 
-                <Button variant="contained" color="success"
+                    <Button
+                        sx={{ml: "5px", mb: "10px"}}
+                        variant="contained" color="success"
                         onClick={() => handleNewDialogOpen({}, true)}>New</Button>
-                <DataGrid rows={userData} columns={columns}/>
+                    <Box
+                        display="flex"
+                        backgroundColor={colors.primary[400]}
+                        borderRadius="3px"
+
+                    >
+                        <InputBase
+                            sx={{ml: 2, flex: 1}}
+                            onChange={handleSearchBoxChange}
+                            placeholder="Search"/>
+                        <IconButton type="button" sx={{p: 1}} onClick={handleUserQuery}>
+                            <SearchIcon/>
+                        </IconButton>
+                    </Box>
+
+
+                </Box>
+
+
+                <DataGrid
+                    rows={userData}
+                    columns={columns}
+
+                    paginationModel={{
+                        page: query.pageNum,
+                        pageSize: query.pageSize
+                    }}
+                    onPaginationModelChange={handlePageChange}
+                //     paginationModel={{
+                //         page: 0,
+                //         pageSize: 5
+                // }}
+                    pageSizeOptions={[5, 10, 15]}
+                />
                 {/*<DataGrid checkboxSelection rows={mockDataTeam} columns={columns}/>*/}
-                <ViewDialog open={viewDialogOpen} userInfo={selectedUserInfo} isEdit={isEdit} handleClose={handleViewDialogClose}  />
-                <AddUserDialog open={newDialogOpen} handleClose={handleNewDialogClose} />
+                <ViewDialog open={viewDialogOpen} userInfo={selectedUserInfo} isEdit={isEdit}
+                            handleClose={handleViewDialogClose}/>
+                <AddUserDialog open={newDialogOpen} handleClose={handleNewDialogClose}/>
 
             </Box>
+
         </Box>
     );
 };
