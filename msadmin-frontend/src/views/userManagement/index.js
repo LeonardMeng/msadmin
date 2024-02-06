@@ -68,7 +68,7 @@ const UserManagement = () => {
     const handleUserQuery = (event) => {
         setQuery({
             ...query,
-            query:searchInputRef.current.value;
+            query:searchInputRef.current.value
         })
 
     }

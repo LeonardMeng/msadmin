@@ -1,8 +1,9 @@
 import axios from "axios";
 // import store from "../store";
-import {getToken} from "./auth";
+import {getToken, removeToken} from "./auth";
 import { message } from 'antd';
 import { showMessage } from './showMessage';
+import {removeUserInfo} from "./user";
 
 
 // import Alert from '@mui/material/Alert';
@@ -65,8 +66,16 @@ service.interceptors.response.use(
             //   // })
             // }
         } else {
-            // message.error(res.message)
-            showMessage(res.message, 'error')
+            if (res.status === 40001) {
+                showMessage("Toke is invalid or expired!", 'error')
+                removeToken()
+                removeUserInfo()
+                window.location.href = '/login'
+            } else {
+                showMessage(res.message, 'error')
+            }
+            console.log(res)
+
             return Promise.reject(res.message)
             // return (<Alert severity="error">{res.message}</Alert>)
         }
@@ -90,7 +99,7 @@ service.interceptors.response.use(
         //     },
         //   });
         // }
-
+        console.log(error)
         showMessage(error.message, 'error')
         return Promise.reject(error);
     }
