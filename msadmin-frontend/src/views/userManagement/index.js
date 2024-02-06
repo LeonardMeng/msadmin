@@ -6,7 +6,7 @@ import {
     Box, IconButton,
     useTheme
 } from "@mui/material";
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {DataGrid} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 //import {mockDataTeam} from "../../data/mockData";
@@ -36,12 +36,19 @@ const UserManagement = () => {
         pageNum: 1,
         pageSize: 10
     });
+    const searchInputRef = useRef(null);
     const colors = tokens(theme.palette.mode);
     const [userData, setUserData] = useState([])
     const [viewDialogOpen, setViewDialogOpen] = useState(false);
     const [newDialogOpen, setNewDialogOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(true);
     const [selectedUserInfo, setSelectedUserInfo] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [rowCountState, setRowCountState] = useState(userData.length);
+    const [paginationModel, setPaginationModel] = useState({
+        page: 0,
+        pageSize: 5
+    })
 
     const handleViewDialogOpen = (row, edit) => {
         setSelectedUserInfo({
@@ -66,35 +73,50 @@ const UserManagement = () => {
         setNewDialogOpen(false);
     };
 
-    const handleSearchBoxChange = (event) => {
-        setQuery({
-            ...query,
-            query: event.target.value
-        })
-        // setQuery(event.target.value);
-    };
-
     const handleUserQuery = (event) => {
         // console.log(query)
-        queryUsers(query).then((data) => {
-            // console.log(data)
-            setUserData(data.userList)
-            setQuery({
-                ...query,
-                pageNum: 1,
-                pageSize: 10
-            })
-        }).catch((error) => {
-        });
+        const inputValue = searchInputRef.current.value;
+        setQuery({
+            ...query,
+            query: inputValue
+        })
+        // console.log(query)
+        // queryUsers(query).then((data) => {
+        //     console.log(data)
+        //     setRowCountState(data.total)
+        //     setUserData(data.userList)
+        //     setQuery({
+        //         ...query,
+        //         pageNum: 1,
+        //         pageSize: 10
+        //     })
+        // }).catch((error) => {
+        // });
     }
 
     const handlePageChange = (event) => {
         setQuery({
             ...query,
-            pageNum: event.page,
+            pageNum: event.page + 1,
             pageSize: event.pageSize
         })
     }
+
+    useEffect(() => {
+        queryUsers(query).then((data) => {
+            setUserData(data.userList)
+            setRowCountState(data.total)
+            setPaginationModel({
+                page: query.pageNum - 1,
+                pageSize: query.pageSize
+            })
+
+        }).catch((error) => {
+                console.log(error)
+            }
+        )
+    }, [query])
+
     const columns = [
         {field: "id", headerName: "ID"},
         {
@@ -158,15 +180,6 @@ const UserManagement = () => {
         },
     ];
 
-    useEffect(() => {
-        getAllUsers().then((data) => {
-                setUserData(data.userList)
-            }
-        ).catch((error) => {
-                console.log(error)
-            }
-        )
-    }, [])
     return (
         <Box m="20px">
             <Header title="User Management" subtitle="Managing the Team Members"/>
@@ -214,7 +227,7 @@ const UserManagement = () => {
                     >
                         <InputBase
                             sx={{ml: 2, flex: 1}}
-                            onChange={handleSearchBoxChange}
+                            inputRef={searchInputRef}
                             placeholder="Search"/>
                         <IconButton type="button" sx={{p: 1}} onClick={handleUserQuery}>
                             <SearchIcon/>
@@ -228,17 +241,14 @@ const UserManagement = () => {
                 <DataGrid
                     rows={userData}
                     columns={columns}
+                    loading={isLoading}
+                    rowCount={rowCountState}
 
-                    paginationModel={{
-                        page: query.pageNum,
-                        pageSize: query.pageSize
-                    }}
+                    paginationModel={paginationModel}
                     onPaginationModelChange={handlePageChange}
-                //     paginationModel={{
-                //         page: 0,
-                //         pageSize: 5
-                // }}
+
                     pageSizeOptions={[5, 10, 15]}
+                    paginationMode="server"
                 />
                 {/*<DataGrid checkboxSelection rows={mockDataTeam} columns={columns}/>*/}
                 <ViewDialog open={viewDialogOpen} userInfo={selectedUserInfo} isEdit={isEdit}

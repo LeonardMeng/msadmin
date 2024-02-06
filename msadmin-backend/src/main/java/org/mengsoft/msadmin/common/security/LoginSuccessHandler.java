@@ -74,14 +74,21 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         // 转菜单树
         List<Menu> menuList=menuService.buildTreeMenu(sysMenuList);
 
-        Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("status", 200);
-        Map<String, Object> loginInfoMap = new HashMap<>();
-        loginInfoMap.put("token", token);
-        loginInfoMap.put("currentUser", currentUser);
-        loginInfoMap.put("menuList", menuList);
-        resultMap.put("data", loginInfoMap);
-
+//        Map<String, Object> resultMap = new HashMap<>();
+//        resultMap.put("status", 200);
+//        Map<String, Object> loginInfoMap = new HashMap<>();
+//        loginInfoMap.put("token", token);
+//        loginInfoMap.put("currentUser", currentUser);
+//        loginInfoMap.put("menuList", menuList);
+//        resultMap.put("data", loginInfoMap);
+        Map<String, Object> resultMap = Map.of(
+                "status", 200,
+                "data", Map.of(
+                        "token", token,
+                        "currentUser", currentUser,
+                        "menuList", menuList
+                )
+        );
 //        outputStream.write(JSONUtil.toJsonStr(R.ok("登录成功").put("authorization",token).put("currentUser",currentUser).put("menuList",menuList)).
         outputStream.write(JSONUtil.toJsonStr(resultMap).getBytes());
         outputStream.flush();
