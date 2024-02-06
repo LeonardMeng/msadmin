@@ -2,7 +2,6 @@
  * Created by KanadeM on 13/1/2024
  */
 import {
-    Badge,
     Box, IconButton,
     useTheme
 } from "@mui/material";
@@ -11,21 +10,13 @@ import {DataGrid} from "@mui/x-data-grid";
 import {tokens} from "../../theme";
 //import {mockDataTeam} from "../../data/mockData";
 import Header from "../../components/Header";
-import {getAllUsers, queryUsers} from "../../api/user";
+import {queryUsers} from "../../api/user";
 import Button from "@mui/material/Button";
 import ViewDialog from "./components/ViewDialog";
 import AddUserDialog from "./components/AddUserDialog";
-import TextField from "@mui/material/TextField";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
-import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import * as React from "react";
-import {Pagination} from "antd";
-import {login} from "../../api/sso";
 
 
 const UserManagement = () => {
@@ -50,6 +41,14 @@ const UserManagement = () => {
         pageSize: 5
     })
 
+
+    const handleNewDialogOpen = () => {
+        setNewDialogOpen(true);
+    }
+    const handleNewDialogClose = () => {
+        setNewDialogOpen(false);
+    };
+
     const handleViewDialogOpen = (row, edit) => {
         setSelectedUserInfo({
             username: row.username,
@@ -60,38 +59,18 @@ const UserManagement = () => {
         setViewDialogOpen(true);
     };
 
-    const handleNewDialogOpen = () => {
-        setNewDialogOpen(true);
-    }
     const handleViewDialogClose = () => {
         setSelectedUserInfo({})
         setViewDialogOpen(false);
     };
 
 
-    const handleNewDialogClose = () => {
-        setNewDialogOpen(false);
-    };
-
     const handleUserQuery = (event) => {
-        // console.log(query)
-        const inputValue = searchInputRef.current.value;
         setQuery({
             ...query,
-            query: inputValue
+            query:searchInputRef.current.value;
         })
-        // console.log(query)
-        // queryUsers(query).then((data) => {
-        //     console.log(data)
-        //     setRowCountState(data.total)
-        //     setUserData(data.userList)
-        //     setQuery({
-        //         ...query,
-        //         pageNum: 1,
-        //         pageSize: 10
-        //     })
-        // }).catch((error) => {
-        // });
+
     }
 
     const handlePageChange = (event) => {
@@ -103,6 +82,7 @@ const UserManagement = () => {
     }
 
     useEffect(() => {
+        setIsLoading(true)
         queryUsers(query).then((data) => {
             setUserData(data.userList)
             setRowCountState(data.total)
@@ -114,7 +94,9 @@ const UserManagement = () => {
         }).catch((error) => {
                 console.log(error)
             }
-        )
+        ).then(() => {
+            setIsLoading(false)
+        })
     }, [query])
 
     const columns = [
