@@ -27,7 +27,7 @@ export const getUserInfo = () => ({
     type: types.GET_USER_INFO
 });
 
-export const deleteUserInfo = () => ({
+export const deleteUserInfo =  () => ({
     type: types.DELETE_USER_DETAILS
 });
 

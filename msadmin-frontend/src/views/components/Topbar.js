@@ -25,7 +25,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import { logout} from "../../api/sso";
 import { connect } from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {removeUserToken, setUserSettings} from "../../store/actions/actions";
+import {deleteUserInfo, removeUserToken, setUserSettings} from "../../store/actions/actions";
 
 const Topbar = (props) => {
     const {
@@ -56,6 +56,7 @@ const Topbar = (props) => {
 
     const handleLogout = () => {
         setAnchorEl(null)
+        deleteUserInfo()
         removeUserToken()
         logout().then((data) => {
             console.log(data)
